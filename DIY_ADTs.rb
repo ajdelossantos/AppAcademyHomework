@@ -9,6 +9,7 @@ class Stack
   def add(el)
     # adds an element to the stack
     @stack.push(el)
+    el
   end
 
   def remove
@@ -18,7 +19,7 @@ class Stack
 
   def show
     # return a copy of the stack
-    @stack
+    @stack.dup
   end
 end
 
@@ -32,6 +33,7 @@ class Queue
 
   def enqueue(el)
     @queue.push(el)
+    el
   end
 
   def dequeue
@@ -39,11 +41,14 @@ class Queue
   end
 
   def show
-    @queue
+    @queue.dup
   end
 end
 
 # Ex 3
 
 class Map
+  def initialize
+    @map = Array.new
+  end
 end
