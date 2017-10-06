@@ -51,4 +51,17 @@ class Map
   def initialize
     @map = Array.new
   end
+
+  def assign(key, value)
+    @map.push([key, value])
+    [key, value]
+  end
 end
+
+# Why exactly is deep duplication necessary
+
+# class Array
+#   def deep_dup
+#     self.map {|el| el.is_a?(Array) ? el.deep_dup : el}
+#   end
+# end
