@@ -8,12 +8,12 @@ class Stack
 
   def add(el)
     # adds an element to the stack
-    @stack << el
+    @stack.push(el)
   end
 
   def remove
     # removes one element from the stack
-    @stack.take(@stack.length - 1)
+    @stack.pop
   end
 
   def show
@@ -23,7 +23,7 @@ class Stack
 end
 
 
-#Ex 2
+# Ex 2
 
 class Queue
   def initialize
@@ -35,10 +35,15 @@ class Queue
   end
 
   def dequeue
-    @queue.drop(1)
+    @queue.shift
   end
 
   def show
     @queue
   end
+end
+
+# Ex 3
+
+class Map
 end
