@@ -53,9 +53,38 @@ class Map
   end
 
   def assign(key, value)
+    @map.each do |el|
+      if key == el[0]
+        el[1] = value
+        puts '(reassigned)'
+        return [key, value]
+      end
+    end
+
     @map.push([key, value])
     [key, value]
   end
+
+  def lookup(key)
+    @map.each do |el|
+      return el[1] if key == el[0]
+    end
+
+    nil
+  end
+
+  def remove(key)
+    @map.reject { |el| key == el[0] }
+  end
+
+  def show
+    @map.dup
+  end
+
+  def find_pair(key)
+    @map.select.with_index { |_el, idx| @map[idx][0] == key }.flatten
+  end
+
 end
 
 # Why exactly is deep duplication necessary
