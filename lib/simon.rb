@@ -22,19 +22,24 @@ class Simon
     show_sequence
     require_sequence
 
-    unless game_over
-      round_success_message
-      @sequence_length += 1
-    end
+    @game_over = true if require_sequence != @seq
+
+    round_success_message
+    @sequence_length += 1
+
   end
 
   def show_sequence
     add_random_color
+    puts "Take a look: you have 5 seconds!"
     puts @seq
+    # initial_time = Time.now
+    # system(clear)
   end
 
   def require_sequence
-
+    puts "Enter in the colors in order! Use spaces please."
+    gets.chomp.split(" ")
   end
 
   def add_random_color
@@ -55,4 +60,9 @@ class Simon
     @game_over = false
     @seq = []
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  game = Simon.new
+  game.play
 end
