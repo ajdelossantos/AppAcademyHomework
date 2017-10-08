@@ -20,10 +20,18 @@ class Simon
 
   def take_turn
     show_sequence
+    puts ""
+    5.times do
+      sleep(1)
+      print '*'
+    end
+
+    system('clear')
     require_sequence
 
-    @game_over = true if require_sequence != @seq
+    @game_over = true if @user_seq != @seq
 
+    puts ""
     round_success_message
     @sequence_length += 1
 
@@ -32,14 +40,13 @@ class Simon
   def show_sequence
     add_random_color
     puts "Take a look: you have 5 seconds!"
+    puts ""
     puts @seq
-    # initial_time = Time.now
-    # system(clear)
   end
 
   def require_sequence
     puts "Enter in the colors in order! Use spaces please."
-    gets.chomp.split(" ")
+    @user_seq = gets.chomp.split(" ")
   end
 
   def add_random_color
@@ -47,15 +54,15 @@ class Simon
   end
 
   def round_success_message
-    puts "Well played."
+    puts "Well played.\n"
   end
 
   def game_over_message
-    puts "Game over, yyyeeeeaaaahhh!!!"
+    puts "Game over, yyyeeeeaaaahhh!!!\n"
   end
 
   def reset_game
-    puts "Let's play again!"
+    puts "We'll play again sometime!"
     @sequence_length = 1
     @game_over = false
     @seq = []
