@@ -28,7 +28,7 @@ class Board
       hand << @cups[start_pos].pop
     end
 
-    start_idx = (start_pos + 1) % 14
+    # start_idx = (start_pos + 1) % 14
 
     current_cup = start_pos
 
