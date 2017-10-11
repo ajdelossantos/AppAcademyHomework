@@ -29,7 +29,7 @@ class Board
     end
 
     # start_idx = (start_pos + 1) % 14
-
+    # This logic escapes me...
     current_cup = start_pos
 
     until hand.empty?
