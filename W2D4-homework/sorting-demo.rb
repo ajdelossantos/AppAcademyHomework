@@ -1,6 +1,43 @@
 #!/usr/bin/env ruby
+
 require 'io/console'
 require 'benchmark'
+
+
+
+# Using a quadratic formula generator, my machine predicts...
+# def total_runtime(x)
+#   (2.12 * 10**-7) * (x**2) + ((1.65 * 10**-5) * x) - 0.00017
+# end
+
+# total_runtime(50000) => 530.82 => 00'05"48
+# total_runtime(100000) => 2121.65 => 00'35"21
+# ----------------------------------------------------------
+# Press any key to benchmark sorts for 5 elements
+#                 user     system      total        real
+# Tot. Merge:    0.000000   0.000000   0.000000 (  0.000060)
+# Tot. Bubble:   0.000000   0.000000   0.000000 (  0.000037)
+# Avg. Merge:    0.000000   0.000000   0.000000 (  0.000020)
+#
+# Avg. Bubble:   0.000000   0.000000   0.000000 (  0.000012)
+# Press any key to benchmark sorts for 50 elements
+#                 user     system      total        real
+# Tot. Merge:    0.000000   0.000000   0.000000 (  0.000762)
+# Tot. Bubble:   0.000000   0.000000   0.000000 (  0.001178)
+# Avg. Merge:    0.000000   0.000000   0.000000 (  0.000254)
+# Avg. Bubble:   0.000000   0.000000   0.000000 (  0.000393)
+# Press any key to benchmark sorts for 500 elements
+#                 user     system      total        real
+# Tot. Merge:    0.000000   0.000000   0.000000 (  0.006498)
+# Tot. Bubble:   0.060000   0.000000   0.060000 (  0.061060)
+# Avg. Merge:    0.000000   0.000000   0.000000 (  0.002166)
+# Avg. Bubble:   0.020000   0.000000   0.020000 (  0.020353)
+# Press any key to benchmark sorts for 5000 elements
+#                 user     system      total        real
+# Tot. Merge:    0.050000   0.000000   0.050000 (  0.054564)
+# Tot. Bubble:   5.370000   0.010000   5.380000 (  5.382701)
+# Avg. Merge:    0.016667   0.000000   0.016667 (  0.018188)
+# Avg. Bubble:   1.790000   0.003333   1.793333 (  1.794234)``
 
 class SortingDemo
   # Bubble Sort: O(n^2)
