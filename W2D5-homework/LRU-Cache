@@ -2,10 +2,15 @@
 
 class LRUCache
   def initialize
+    @cache = {
+      head: Link.new(nil, nil, @cache[:tail]),
+      tail: (nil, @cache[:head], nil)
+    }
   end
 
   def count
     # returns number of elements currently in cache
+    cache.keys.count
   end
 
   def add(el)
@@ -19,4 +24,15 @@ class LRUCache
   private
   # helper methods go here!
 
+end
+
+class Link
+attr_accessor :value, :next_el, :prev_el # :head, :tail
+
+  def initialize(value, next_el, prev_el)
+    @value = value
+    @next_el = next_el
+    @prev_el = prev_el
+    # @head = true
+    # @tail = false
 end
