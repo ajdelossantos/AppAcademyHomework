@@ -1,1 +1,1 @@
-# App Academy W3D4 homework -- SQLite3
+# App Academy W3D2 homework -- SQLite3
