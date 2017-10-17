@@ -19,6 +19,26 @@ class Play
     data.map { |datum| Play.new(datum) }
   end
 
+  def self.find_by_title(title)
+    data = PlayDBConnection.instance.execute(<<-SQL, title)
+      SELECT
+        title
+      FROM
+        plays;
+      SQL
+    data.map { |datum| Play.new(datum) }
+  end
+
+  def self.find_by_playwright(name)
+    data = PlayDBConnection.instance.execute(<<-SQL, name)
+      SELECT
+        name
+      FROM
+        plays;
+      SQL
+    data.map { |datum| Play.new(datum) }
+  end
+
   def initialize(options)
     @id = options['id']
     @title = options['title']
@@ -47,5 +67,39 @@ class Play
       WHERE
         id = ?
     SQL
+  end
+end
+
+class Playwright
+  attr_accessor :name, :birth_year
+
+  def self.all
+    data = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
+    data.map { |datum| Playwright.new(datum) }
+  end
+
+  def self.find_by_name(name)
+    data = PlayDBConnection.instance.execute(<<-SQL, name)
+      SELECT
+        name
+      FROM
+        playwrights;
+      SQL
+    data.map { |datum| Playwright.new(datum) }
+  end
+
+  def initialize(options)
+    @id = options['id']
+    @name = options['name']
+    @birth_year = options['birth_year']
+  end
+
+  def create
+  end
+
+  def update
+  end
+
+  def get_plays
   end
 end
