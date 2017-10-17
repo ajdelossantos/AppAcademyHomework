@@ -16,27 +16,38 @@ class Play
 
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM plays")
+
+    # TODO What does this do here?
     data.map { |datum| Play.new(datum) }
+
   end
 
   def self.find_by_title(title)
-    data = PlayDBConnection.instance.execute(<<-SQL, title)
+    plays = PlayDBConnection.instance.execute(<<-SQL, title)
       SELECT
-        title
+        *
       FROM
-        plays;
+        plays
+      WHERE
+        title = ?;
       SQL
-    data.map { |datum| Play.new(datum) }
+
+      #TODO solutions include a nil clause; necessary?
+      plays.map { |play| Play.new(play) }
   end
 
+  #TODO This method is a mess, see solutions
   def self.find_by_playwright(name)
-    data = PlayDBConnection.instance.execute(<<-SQL, name)
+    plays = PlayDBConnection.instance.execute(<<-SQL, name)
       SELECT
-        name
+        *
       FROM
-        plays;
+        plays
+      JOIN playwrights ON play.playwright_id = playwrights.id
+      WHERE
+        playwrights.name = ?;
       SQL
-    data.map { |datum| Play.new(datum) }
+    plays.to_a
   end
 
   def initialize(options)
@@ -79,13 +90,17 @@ class Playwright
   end
 
   def self.find_by_name(name)
-    data = PlayDBConnection.instance.execute(<<-SQL, name)
+    persons = PlayDBConnection.instance.execute(<<-SQL, name)
       SELECT
-        name
+        *
       FROM
-        playwrights;
-      SQL
-    data.map { |datum| Playwright.new(datum) }
+        playwrights
+      WHERE
+        name = ?
+    SQL
+
+    #TODO nil escape clause?
+    persons.map { |person| Playwright.new(person) }
   end
 
   def initialize(options)
@@ -95,11 +110,40 @@ class Playwright
   end
 
   def create
+    raise "#{self} already in database" if @id
+    PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year)
+      INSERT INTO
+        playwrights (name, birth_year)
+      VALUES
+        (?, ?)
+    SQL
+    @id = PlayDBConnection.instance.last_insert_row_id
   end
 
   def update
+    raise "#{self} not in database" unless @id
+    PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year, @id)
+      UPDATE
+        playwrights
+      SET
+        name = ?, birth_year = ?
+      WHERE
+        id = ?
+    SQL
   end
 
+  #TODO This is also a friggin mess
   def get_plays
+    plays = PlayDBConnection.instance.execute(<<-SQL, @name, @birth_year)
+      SELECT
+        *
+      FROM
+        playwrights
+      JOIN
+        plays ON playwright.id = plays.playwright_id
+      WHERE
+        playwright_id = ?;
+    SQL
+    plays.map { |play| Play.new(play) }
   end
 end
