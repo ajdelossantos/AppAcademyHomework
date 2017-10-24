@@ -1,14 +1,16 @@
 <h1>Add a Book</h1>
 
-<% if flash.now[:errors] %>
+<!-- <% if flash.now[:errors] %>
   <ul>
     <% flash.now[:errors].each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>
-<% end %>
+<% end %> -->
 
-<form action= <%= books_url %> method="POST">
+<% render 'form', action: :new, book: @book %>
+
+<!-- <form action="<%= books_url %>" method="POST">
   <input
     type="hidden"
     name="authenticity_token"
@@ -24,5 +26,23 @@
   </label>
   <br>
 
-  <input type="submit">
-</form>
+  <label for="year">Year</label>
+  <input id="year" type="text" name="book[year]">
+
+  <label for="category">Category</label>
+  <select class="" name="book[category]">
+
+    <option disabled selected>--Please Select--</option>
+    <option value="Fiction">Fiction</option>
+    <option value="Non-Fiction">Non-Fiction</option>
+    <option value="Memoir">Memoir</option>
+
+  </select>
+  <br>
+
+  <label for="description">Description</label>
+  <textarea name="book[description]" rows="8" cols="80"></textarea>
+
+
+  <input type="submit" value="Add book to library">
+</form> -->
