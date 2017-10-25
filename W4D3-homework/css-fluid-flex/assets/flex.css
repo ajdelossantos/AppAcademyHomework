@@ -85,7 +85,7 @@ nav ul li a {
 
 body {
   margin: 0 auto;
-    width: 60%;
+  width: 60%;
 }
 
 aside {
@@ -119,16 +119,18 @@ label {
 }
 /* Working as intended, I guess... */
 @media all and (max-width: 900px) {
+
   nav ul {
     display: none
-  }
+}
 
 .hamburger-dropdown {
     display: block;
 }
 
-.hamburger-dropdown li {
+.hamburger-dropdown > li {
   background-image: url(hamburger.png);
+  background-repeat: no-repeat;
   width: 50px;
   height: 50px;
   background-size: 50px 50px;
@@ -137,10 +139,13 @@ label {
 
 .hamburger-dropdown ul {
   position: absolute;
-  top: 100px;
+  top: 50px;
+  left: 0;
   flex-direction: column;
  }
 
  .hamburger-dropdown:hover ul {
     display: flex;
+ }
+
  }
