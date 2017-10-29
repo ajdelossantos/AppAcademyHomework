@@ -3,18 +3,19 @@ class SessionsController < ApplicationController
   # before_action :require_logged_out, only: [:new, :create]
 
   #TODO local variable, not instance variable
+
   def create
     #IDEA returns nil if user not found
-    user = User.find_by_credentials(
+    @user = User.find_by_credentials(
       params[:user][:email],
       params[:user][:password]
     )
 
-    if user.nil?
+    if @user.nil?
       flash[:errors] = ["Invalid arguments"]
       render :new
     else
-      login!(user)
+      login!(@user)
       redirect_to users_url
     end
   end

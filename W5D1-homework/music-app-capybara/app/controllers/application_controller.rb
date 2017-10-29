@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   #TODO remember those CSRF tokens
   # protect_from_forgery with: :exception
+
   #TODO helper method for html access
   helper_method :current_user
+  helper_method :logged_in?
   #IDEA you have access to the sessions hash
 
   # instance method vs instance variable
