@@ -1,22 +1,20 @@
-<h1 class='page-header'>New User</h1>
+<h1>Sign up for Music at a/A!</h1>
 
-<a class='button' href=<%= new_session_url %> >Go to sign-in</a>
+<% unless flash[:errors].nil? %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+    <li> <%= error %> </li>
+    <% end %>
+  </ul>
+<% end %>
 
-<form class='form' action="<%= user_url %>" method="post">
-  <input
-    type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+<form action="<%= users_url %>" method="POST">
+  <!--TODO csrf token  -->
+  <label for="email">Email</label>
+  <input type="text" id="email" name="user[email]"value="<%= @user.email %>">
 
-  <p>
-    <label for='new-user-email'>Email</label>
-    <input id='new-user-email' type="text" name="user[email]">
-  </p>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="user[password]">
 
-  <p>
-    <label for='new-user-password'>Password</label>
-    <input id='new-user-password' type="password" name="user[password]">
-  </p>
-
-  <input type="submit" value="Submit">
+  <button type="submit">Sign Up</button>
 </form>

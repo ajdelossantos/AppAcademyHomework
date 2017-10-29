@@ -1,26 +1,35 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  #TODO remember those CSRF tokens
+  # protect_from_forgery with: :exception
+  #TODO helper method for html access
+  helper_method :current_user
+  #IDEA you have access to the sessions hash
 
-  helper_method :current_user, :current_user_id, :logged_in?
-
+  # instance method vs instance variable
   def current_user
     return nil unless session[:session_token]
-    @current_user ||= User.find_by_session_token(session[:session_token])
+    @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
-  def current_user_id
-    current_user ? current_user.id : nil
-  end
-
-  def logged_in?
-    !!current_user
-  end
-
-  def login_user!(user)
+  def login!(user)
     session[:session_token] = user.reset_session_token!
   end
 
-  def require_user!
-    redirect_to new_session_url if current_user.nil?
+  def logout!
+    current_user.reset_session_token!
+    session[:session_token] = nil
+  end
+
+  #IDEA a useful helper
+  def logged_in?
+    current_user ? true : false
+  end
+
+  def require_logged_out
+    redirect_to users_url if logged_in?
+  end
+
+  def require_logged_in
+    redirect_to new_session unless logged_in?
   end
 end

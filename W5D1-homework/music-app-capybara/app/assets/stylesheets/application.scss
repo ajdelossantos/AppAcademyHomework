@@ -13,11 +13,7 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css?family=Raleway|Bungee+Inline');
-
-@import "reset.scss";
-@import "base.scss";
-@import "form.scss";
-@import "lists.scss";
-@import "tracks.scss";
-@import "notes.scss";
+// CSS Reset
+@import "base/reset.scss";
+@import "base/fonts.scss";
+@import "base/button-links.scss";

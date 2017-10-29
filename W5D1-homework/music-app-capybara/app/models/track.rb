@@ -1,24 +1,22 @@
+# == Schema Information
+#
+# Table name: tracks
+#
+#  id         :integer          not null, primary key
+#  title      :string           not null
+#  album_id   :integer          not null
+#  ord        :integer          not null
+#  lyrics     :text             not null
+#  bonus      :boolean          default(FALSE), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Track < ApplicationRecord
-  # N.B. Remember, Rails 5 automatically validates the presence of
-  # belongs_to associations, so we can leave the validation of albums
-  # out here.
-  validates :lyrics, :name, :ord, presence: true
-  # can't use presence validation with boolean field
-  validates :bonus, inclusion: { in: [true, false] }
-  validates :ord, uniqueness: { scope: :album_id }
 
-  belongs_to :album
+  belongs_to :album,
+    class_name: 'Album',
+    foreign_key: :album_id,
+    primary_key: :id
 
-  has_one :band,
-    through: :album,
-    source: :band
-
-  has_many :notes,
-    dependent: :destroy
-
-  after_initialize :set_defaults
-
-  def set_defaults
-    self.bonus ||= false
-  end
 end

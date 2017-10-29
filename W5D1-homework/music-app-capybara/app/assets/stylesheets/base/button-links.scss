@@ -1,0 +1,11 @@
+a, button {
+  text-decoration: none;
+  background-color: #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+a:hover, button:hover {
+  color: #eee;
+  background-color: #222;
+}

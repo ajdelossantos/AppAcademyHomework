@@ -1,12 +1,9 @@
-<h1 class='page-header'>Bands</h1>
+<h1>Bands#index</h1>
+<br>
 
-<ul class='main-list'>
-  <% @bands.each do |band| %>
-    <li><a href="<%= band_url(band) %>"><p><%= band.name %></p></a></li>
-  <% end %>
-</ul>
-
-<h4 class='sub-header'>Links</h4>
-<ul class='page-links'>
-  <li><a class='button' href="<%= new_band_url %>" >New band</a></li>
-</ul>
+<% @bands.each do |band| %>
+  <ul>
+    <li><a href="<%= band_url(band.id) %>"><%= band.name %></a></li>
+    <br>
+  </ul>
+<% end %>
