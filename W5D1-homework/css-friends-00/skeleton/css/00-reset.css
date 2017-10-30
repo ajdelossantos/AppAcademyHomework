@@ -5,15 +5,33 @@ ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
 span, article, footer, time, small {
+  /*TODO Looked up on a/A CSS-demos; memorize these things!*/
 
+  /*IDEA These are 0*/
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+
+  /*IDEA These inherit*/
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+
+  /*IDEA background: is special*/
+  background: transparent;
 }
 
 ul {
-
+  list-style: none;
 }
 
 img {
-
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 input[type="password"],
@@ -22,10 +40,13 @@ input[type="text"],
 input[type="submit"],
 textarea,
 button {
-
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  /*TODO why is this not included?*/
+  /*appearance:         none;*/
 }
 
 button,
 input[type="submit"] {
-
+  cursor: pointer;
 }
