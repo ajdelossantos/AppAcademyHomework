@@ -1,8 +1,10 @@
+// Some tea? Some biscuits?
 const readline = require('readline');
 
 const reader = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  terminal: false
 });
 
 //TODO ask a TA--how do you open this in node?
