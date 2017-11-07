@@ -31,7 +31,7 @@ View.prototype.exercise2 = function () {
   //Result: Every square vanishes
 
   //your code here!
-  $('li').addClass('hidden');
+  $('li').css({"display":"none"});
 };
 
 View.prototype.exercise3 = function () {
@@ -39,7 +39,7 @@ View.prototype.exercise3 = function () {
   //Result: An <h1> with the text 'i love jquery' appears under the grid.
 
   //your code here!
-  $('body').append("<h1>i love jquery</h1>");
+  $('div').append("<h1>i love jquery</h1>");
 };
 
 View.prototype.exercise4 = function () {
@@ -47,6 +47,7 @@ View.prototype.exercise4 = function () {
   //Result: Your name appears in every other square.
 
   //your code here!
+    $(".square:nth-child(even)").text("Alvin");
 };
 
 View.prototype.exercise5 = function () {
@@ -58,6 +59,8 @@ View.prototype.exercise5 = function () {
   //  'data-pos' of every square
 
   //your code here!
+  // TODO Pretty lost here-- ask a TA
+
 };
 
 View.prototype.exercise6 = function () {
@@ -68,6 +71,9 @@ View.prototype.exercise6 = function () {
   //hint: use window._randomColorString() (defined at top) to get a random color!
 
   //your code here!
+  $(".square").each( (sq, el) => {
+    $(el).css("background-color", window._randomColorString());
+  });
 };
 
 View.prototype.exercise7 = function(){
@@ -78,6 +84,7 @@ View.prototype.exercise7 = function(){
   //rainbow.
 
   //your code here!
+  // TODO Not sure of the syntax here--ask a TA
 };
 
 
