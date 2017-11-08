@@ -15,4 +15,4 @@ console.log("Hello from the JavaScript console!");
    });
 // Add another console log here, outside your AJAX request
 
-console.log("This is outside the AJAX request.")
+console.log("This is outside the AJAX request.");
