@@ -4,6 +4,7 @@ class Calculator extends React.Component{
   constructor(props){
     super(props);
     //your code here
+    this.state = { num1: "", num2: "", result: 0 };
   }
 
   //your code here
@@ -11,8 +12,8 @@ class Calculator extends React.Component{
   render(){
     return (
       <div>
-        <h1>this.state.result</h1>
-
+        <h1>"A placeholder"</h1>
+        <h1>{this.state.result}</h1>
       </div>
     );
   }
