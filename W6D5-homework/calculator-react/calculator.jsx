@@ -11,8 +11,8 @@ class Calculator extends React.Component{
   render(){
     return (
       <div>
-        <h1>Hello World</h1>
-        //your code will replace this
+        <h1>this.state.result</h1>
+
       </div>
     );
   }
