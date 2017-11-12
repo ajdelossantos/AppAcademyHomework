@@ -9627,16 +9627,71 @@ var Calculator = function (_React$Component) {
   function Calculator(props) {
     _classCallCheck(this, Calculator);
 
-    //your code here
     var _this = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this, props));
 
     _this.state = { num1: "", num2: "", result: 0 };
+
+    _this.setNum1 = _this.setNum1.bind(_this);
+    _this.setNum2 = _this.setNum2.bind(_this);
+
+    _this.addNums = _this.addNums.bind(_this);
+    _this.subtractNums = _this.subtractNums.bind(_this);
+    _this.multiplyNums = _this.multiplyNums.bind(_this);
+    _this.divideNums = _this.divideNums.bind(_this);
+    _this.clear = _this.clear.bind(_this);
     return _this;
   }
 
-  //your code here
-
   _createClass(Calculator, [{
+    key: "setNum1",
+    value: function setNum1(event) {
+      //IDEA event.target.value came from the 'onChange' listener
+      var num1 = event.target.value ? parseInt(event.target.value) : "";
+
+      // automatic assignment w/ object destructuring => {num1: num1}
+      this.setState({ num1: num1 });
+    }
+  }, {
+    key: "setNum2",
+    value: function setNum2(event) {
+      var num2 = event.target.value ? parseInt(event.target.value) : "";
+      this.setState({ num2: num2 });
+    }
+  }, {
+    key: "addNums",
+    value: function addNums(event) {
+      event.preventDefault();
+      var result = parseInt(this.state.num1) + parseInt(this.state.num2);
+      this.setState({ result: result });
+    }
+  }, {
+    key: "subtractNums",
+    value: function subtractNums(event) {
+      event.preventDefault();
+      var result = parseInt(this.state.num1) - parseInt(this.state.num2);
+      this.setState({ result: result });
+    }
+  }, {
+    key: "multiplyNums",
+    value: function multiplyNums(event) {
+      event.preventDefault();
+      var result = parseInt(this.state.num1) * parseInt(this.state.num2);
+      this.setState({ result: result });
+    }
+  }, {
+    key: "divideNums",
+    value: function divideNums(event) {
+      event.preventDefault();
+      var result = parseInt(this.state.num1) / parseInt(this.state.num2);
+      this.setState({ result: result });
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      event.preventDefault();
+      this.setState = { num1: "", num2: "", result: 0 };
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -9645,13 +9700,36 @@ var Calculator = function (_React$Component) {
         _react2.default.createElement(
           "h1",
           null,
-          "\"A placeholder\""
+          "Hark, a calculator"
         ),
         _react2.default.createElement(
           "h1",
           null,
           this.state.result
-        )
+        ),
+        _react2.default.createElement("input", { onChange: this.setNum1, value: this.state.num1 }),
+        _react2.default.createElement("input", { onChange: this.setNum2, value: this.state.num2 }),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.addNums },
+          "+"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.subtractNums },
+          "-"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.multiplyNums },
+          "*"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.divideNums },
+          "/"
+        ),
+        _react2.default.createElement("button", { onClick: this.clear })
       );
     }
   }]);
