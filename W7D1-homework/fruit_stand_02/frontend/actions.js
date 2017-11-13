@@ -1,10 +1,16 @@
+// prevents errors with strings--will fail loudly!
 export const ADD_FRUIT = "ADD_FRUIT";
 export const CLEAR = "CLEAR";
 
+// export const addOrange = () => ({
+//   type: ADD_FRUIT,
+//   fruit: "Orange"
+// });
+
 export const addOrange = () => ({
   type: ADD_FRUIT,
-  fruit: "Orange"
-})
+  fruit: 'Blood Orange'
+});
 
 export const addApple = () => ({
   type: ADD_FRUIT,

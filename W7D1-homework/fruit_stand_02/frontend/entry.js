@@ -13,6 +13,7 @@ window.addApple = addApple;
 window.clearFruit = clearFruit;
 
 const App = () => (
+  // Provider has store prop, makes store available globally
 	<Provider store={store}>
 		<FruitStandContainer />
 	</Provider>
