@@ -9724,8 +9724,6 @@ var Widget = function (_React$Component) {
   return Widget;
 }(_react2.default.Component);
 
-;
-
 exports.default = Widget;
 
 /***/ }),
@@ -9771,15 +9769,17 @@ module.exports = __webpack_require__(118);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var SWITCH_CURRENCY = exports.SWITCH_CURRENCY = "SWITCH_CURRENCY";
+var SWITCH_CURRENCY = "SWITCH_CURRENCY";
 
-var selectCurrency = exports.selectCurrency = function selectCurrency(baseCurrency, rates) {
+var selectCurrency = function selectCurrency(baseCurrency, rates) {
   return {
     type: SWITCH_CURRENCY,
-    baseCurrency: "",
-    rates: {}
+    baseCurrency: baseCurrency,
+    rates: rates
   };
 };
+
+exports.default = selectCurrency;
 
 /***/ }),
 /* 86 */
@@ -22758,7 +22758,15 @@ var reducer = function reducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
-  return state; // remove this and fill out the body of the reducer function
+  switch (action.type) {
+    case "SWITCH_CURRENCY":
+      return {
+        baseCurrency: action.baseCurrency,
+        rates: action.rates
+      };
+    default:
+      return state;
+  }
 };
 
 exports.default = reducer;
