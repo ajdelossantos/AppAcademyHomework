@@ -1,5 +1,79 @@
+/* Reset */
+
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  /*
+  Get rid of native styling. Read more here:
+  http://css-tricks.com/almanac/properties/a/appearance/
+  */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+h1, h3, body {
+  font-family: 'Lato', sans-serif;
+  background-color: #eee;
+}
+
+h1, h3 {
+  font-weight: 700;
+  display: block;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.red, .green {
+  margin-left: 24px;
+  padding: 6px;
+}
+
 .red {
   color: red;
+  margin-left:48px;
 }
 
 .green {
@@ -8,13 +82,22 @@
 
 .currency-selector {
   display: inline-block;
+  margin-left: 24px;
+  padding: 5px;
 }
 
 .currency-option {
   float: right;
   padding-left: 5px;
+  font-weight: 300;
 }
 
 .rates-list {
   padding-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #afb0db;
+  box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.5);
+  padding: 10px;
+  margin: 0 24px;
 }
