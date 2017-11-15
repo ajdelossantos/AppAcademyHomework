@@ -12057,6 +12057,10 @@ function warning(message) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _react = __webpack_require__(17);
 
 var _react2 = _interopRequireDefault(_react);
@@ -12068,6 +12072,19 @@ var _giphys_search_container = __webpack_require__(111);
 var _giphys_search_container2 = _interopRequireDefault(_giphys_search_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//IDEA takes store as a prop object
+var Root = function Root(_ref) {
+  var store = _ref.store;
+
+  return _react2.default.createElement(
+    _reactRedux.Provider,
+    { store: store },
+    _react2.default.createElement(_giphys_search_container2.default, null)
+  );
+};
+
+exports.default = Root;
 
 /***/ }),
 /* 106 */
@@ -12143,6 +12160,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(17);
 
 var _react2 = _interopRequireDefault(_react);
@@ -12153,12 +12172,64 @@ var _giphys_index2 = _interopRequireDefault(_giphys_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var GiphysSearch = function () {
+  function GiphysSearch() {
+    _classCallCheck(this, GiphysSearch);
+
+    // super();
+    this.state = {
+      searchTerm: "puppies"
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  _createClass(GiphysSearch, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(event) {
+      event.preventDefault();
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      this.setState({ searchTerm: event.currentTarget.value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'form',
+          null,
+          _react2.default.createElement('input', { type: 'text', onChange: this.handleChange, value: this.searchTerm }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit', onClick: this.handleSubmit },
+            'Search!'
+          )
+        )
+      );
+    }
+  }]);
+
+  return GiphysSearch;
+}();
+
 /***/ }),
 /* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _reactRedux = __webpack_require__(71);
 
@@ -12169,6 +12240,22 @@ var _giphys_search2 = _interopRequireDefault(_giphys_search);
 var _giphy_actions = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    giphys: state.giphys
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchSearchGiphys: function fetchSearchGiphys(searchTerm) {
+      return dispatch((0, _giphy_actions.fetchSearchGiphys)(searchTerm));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_giphys_search2.default);
 
 /***/ }),
 /* 112 */
@@ -12193,25 +12280,23 @@ var _root = __webpack_require__(105);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _giphy_actions = __webpack_require__(59);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var debugVars = function debugVars(store) {
-  window.store = store;
-  window.fetchSearchGiphys = _giphy_actions.fetchSearchGiphys;
-  window.receiveSearchGiphys = _giphy_actions.receiveSearchGiphys;
-};
 
 //TODO remove after debugging
 // import { fetchSearchGiphys } from './util/api_util';
-
+// import { receiveSearchGiphys, fetchSearchGiphys }from './actions/giphy_actions';
+//
+// const debugVars = (store) => {
+//   window.store = store;
+//   window.fetchSearchGiphys = fetchSearchGiphys;
+//   window.receiveSearchGiphys = receiveSearchGiphys;
+// };
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = (0, _store2.default)();
 
   //TODO remove after debugging
-  debugVars(store);
+  // debugVars(store);
 
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);

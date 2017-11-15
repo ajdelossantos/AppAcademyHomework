@@ -5,19 +5,19 @@ import Root from './components/root';
 
 //TODO remove after debugging
 // import { fetchSearchGiphys } from './util/api_util';
-import { receiveSearchGiphys, fetchSearchGiphys }from './actions/giphy_actions';
-
-const debugVars = (store) => {
-  window.store = store;
-  window.fetchSearchGiphys = fetchSearchGiphys;
-  window.receiveSearchGiphys = receiveSearchGiphys;
-};
+// import { receiveSearchGiphys, fetchSearchGiphys }from './actions/giphy_actions';
+//
+// const debugVars = (store) => {
+//   window.store = store;
+//   window.fetchSearchGiphys = fetchSearchGiphys;
+//   window.receiveSearchGiphys = receiveSearchGiphys;
+// };
 
 document.addEventListener('DOMContentLoaded', () => {
   const store = configureStore();
 
   //TODO remove after debugging
-  debugVars(store);
+  // debugVars(store);
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, root);
