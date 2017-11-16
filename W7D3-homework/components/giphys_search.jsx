@@ -2,9 +2,9 @@ import React from 'react';
 
 import GiphysIndex from './giphys_index';
 
-class GiphysSearch {
+class GiphysSearch extends React.Component {
   constructor () {
-    // super();
+    super();
     this.state = {
       searchTerm: "puppies"
     };
@@ -34,3 +34,5 @@ class GiphysSearch {
   }
 
 }
+
+export default GiphysSearch;
